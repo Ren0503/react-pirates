@@ -10,20 +10,22 @@
 npm install --save react-pirates
 ```
 
-## Usage
+## Features
+
+react-pirates help you perform a lot of work about advanced react hooks
+
+### useAsync
+
+For handle asynchronous calls
+
+#### Usage
 
 ```jsx
-import React, { Component } from 'react'
-
-import MyComponent from 'react-pirates'
-import 'react-pirates/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
+  const imgFetch = useAsync(url =>
+    fetch(url).then(response => response.json())
+  );
 ```
+
 
 ## License
 
