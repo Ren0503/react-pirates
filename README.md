@@ -23,7 +23,7 @@ For handle asynchronous calls
 ```jsx
   const imgFetch = useAsync(url =>
     fetch(url).then(response => response.json())
-  );
+  )
 ```
 
 

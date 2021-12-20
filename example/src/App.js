@@ -1,35 +1,29 @@
 import React from 'react'
-
-import { ExampleComponent } from 'react-pirates'
 import 'react-pirates/dist/index.css'
-import { useAsync } from 'react-pirates'
+import ClickBox from './components/ClickBox';
+import Modal from './components/Modal';
+import RandomImage from './components/RandomImage'
 
 const App = () => {
-  const imgFetch = useAsync(url =>
-    fetch(url).then(response => response.json())
-  );
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   return (
     <div>
-      <button
-        onClick={() => imgFetch.run('https://dog.ceo/api/breeds/image/random')}
-        disabled={imgFetch.isLoading}
+      <RandomImage />
+
+      <div
+        style={{
+          height: '400vh', textAlign: 'center', paddingTop: 100,
+          background: 'linear-gradient(to bottom, #1fa2ff, #12d8fa, #a6ffcb)'
+        }}
       >
-        Load image
-      </button>
-      <br />
-      {imgFetch.loading && <div>Loading...</div>}
-      {imgFetch.error && <div>Error {imgFetch.error}</div>}
-      {imgFetch.value && (
-        <img
-          src={imgFetch.value.message}
-          alt="avatar"
-          width={400}
-          height="auto"
-        />
-      )}
+        <button onClick={() => setModalOpen(true)}>Open modal</button>
+        {modalOpen && <Modal onClose={() => setModalOpen(false)} />}
+      </div>
+
+      <ClickBox onClickInside={() => alert('click inside')} />
     </div>
-  );
+  )
 }
 
 export default App
